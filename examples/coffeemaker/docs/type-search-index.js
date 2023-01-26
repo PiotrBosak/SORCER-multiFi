@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"org.example","l":"Context"},{"p":"org.example","l":"ContextException"},{"p":"org.example","l":"Main"},{"p":"org.example","l":"Recipe"},{"p":"org.example","l":"ServiceContext"}];updateSearchResults();

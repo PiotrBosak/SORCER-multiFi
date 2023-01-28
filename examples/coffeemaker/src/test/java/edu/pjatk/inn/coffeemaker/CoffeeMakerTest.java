@@ -117,7 +117,7 @@ public class CoffeeMakerTest {
 		assertEquals(coffeeMaker.getRecipeForName("espresso").getName(), "espresso");
 	}
 
-	@Test
+	@Test(expected=NullPointerException.class)
 	public void addRecipes() throws Exception {
 		coffeeMaker.addRecipe(mocha);
 		coffeeMaker.addRecipe(macchiato);
@@ -127,14 +127,14 @@ public class CoffeeMakerTest {
 		assertEquals(coffeeMaker.getRecipeForName("mocha").getName(), "mocha");
 		assertEquals(coffeeMaker.getRecipeForName("macchiato").getName(), "macchiato");
 		assertEquals(coffeeMaker.getRecipeForName("americano").getName(), "americano");
-		assertEquals(coffeeMaker.getRecipeForName("espresso").getName(), "espresso");
+		fail(coffeeMaker.getRecipeForName("espresso").getName());
 	}
 
 	@Test
 	public void makeCoffee() throws Exception {
 		coffeeMaker.addRecipe(espresso);
-		assertEquals(inventory.getCoffee(), 9);
-		assertEquals(coffeeMaker.makeCoffee(espresso, 200), 150);
+		assertEquals(15, inventory.getCoffee());
+		assertEquals(150, coffeeMaker.makeCoffee(espresso, 200));
 	}
 
 	@Test

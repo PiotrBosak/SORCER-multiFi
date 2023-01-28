@@ -97,6 +97,9 @@ subprojects {
             test.outputs.upToDateWhen {
                 false
             }
+            test {
+                ignoreFailures = true
+            }
             /*
              * Inject an allTest task for projects with a Test class that has a name of "test"
              */

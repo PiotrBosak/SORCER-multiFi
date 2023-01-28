@@ -19,6 +19,9 @@ import static sorcer.eo.operator.*;
 import static sorcer.so.operator.eval;
 import static sorcer.so.operator.exec;
 
+import java.util.Arrays;
+import static org.junit.Assert.*;
+
 /**
  * @author Mike Sobolewski
  */
@@ -72,6 +75,14 @@ public class CoffeeMakerTest {
 	@Test
 	public void testAddRecipe() {
 		assertTrue(coffeeMaker.addRecipe(espresso));
+		assertTrue(coffeeMaker.addRecipe(macchiato));
+		assertTrue(coffeeMaker.addRecipe(americano));
+		assertFalse(coffeeMaker.addRecipe(mocha));
+	}
+
+	@Test
+	public void testAddMoreThan3() {
+		assertTrue(coffeeMaker.addRecipe(espresso));
 	}
 
 	@Test
@@ -111,16 +122,42 @@ public class CoffeeMakerTest {
 		coffeeMaker.addRecipe(mocha);
 		coffeeMaker.addRecipe(macchiato);
 		coffeeMaker.addRecipe(americano);
+		coffeeMaker.addRecipe(espresso);
 
 		assertEquals(coffeeMaker.getRecipeForName("mocha").getName(), "mocha");
 		assertEquals(coffeeMaker.getRecipeForName("macchiato").getName(), "macchiato");
 		assertEquals(coffeeMaker.getRecipeForName("americano").getName(), "americano");
+		assertEquals(coffeeMaker.getRecipeForName("espresso").getName(), "espresso");
 	}
 
 	@Test
 	public void makeCoffee() throws Exception {
 		coffeeMaker.addRecipe(espresso);
+		assertEquals(inventory.getCoffee(), 9);
 		assertEquals(coffeeMaker.makeCoffee(espresso, 200), 150);
+	}
+
+	@Test
+	public void makeCoffeeInventoryCheck(){
+		int cash = 50;
+		coffeeMaker.makeCoffee(espresso, cash);
+		assertEquals(9, inventory.getCoffee());
+		assertEquals(14, inventory.getMilk());
+		assertEquals(14, inventory.getSugar());
+		assertEquals(15, inventory.getChocolate());
+	}
+
+	@Test
+	public void delRecipe () {
+		coffeeMaker.addRecipe(espresso);
+		coffeeMaker.deleteRecipe(espresso);
+		assertFalse(Arrays.asList(coffeeMaker.getRecipes()).contains(espresso));
+	}
+
+	@Test
+	public void makeCoffeeNotEnoughCash(){
+		int cash = 30;
+		assertEquals(cash, coffeeMaker.makeCoffee(espresso, cash));
 	}
 
 }

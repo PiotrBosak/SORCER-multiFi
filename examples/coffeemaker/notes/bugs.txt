@@ -1,0 +1,5 @@
+1. testAddRecipe: The check is for NUM_RECIPES equals to 4, where it should be 3. (line 25)
+2. testDeleteRecipe: There was not a successfull deletion done (line 92)
+3. testEditRecipe: No update did happaned, as we were not swapping the values for new one (line  126)
+4. testAddInventory: Wrong direction of an > sign (line 150)
+5. testMakeCoffee: + swapped with - (line 186)

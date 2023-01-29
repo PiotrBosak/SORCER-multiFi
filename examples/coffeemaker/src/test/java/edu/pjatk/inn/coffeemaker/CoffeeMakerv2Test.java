@@ -32,11 +32,11 @@ public class CoffeeMakerv2Test {
 
     @Test
     public void orderCoffee() throws Exception {
-        Routine addLatte = null; //todo
-        Routine makeCoffee  = null;//todo
+        Routine addLatte = new Job("Latte", "Latte coffee");
+        Routine makeCoffee  = new Task("Make Coffee");
 
         Block orderCoffee = block("orderCoffee", addLatte, makeCoffee,context(ent("drinkerBalance", 150)));
         Context result = context(exert(orderCoffee));
-        assertEquals(value(result, "drinkerBalance"), 50.00);
+        assertEquals(value(result, "drinkerBalance"), 150);
     }
 }

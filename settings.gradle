@@ -17,7 +17,8 @@ pluginManagement {
     repositories {
         mavenLocal()
 	gradlePluginPortal()
-	maven { url "http://10.131.7.138:7001" }	
+	maven {
+        url "http://10.131.7.138:7001" }
    }
 }
 include 'sorcer-dl'
